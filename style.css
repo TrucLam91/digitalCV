@@ -345,7 +345,18 @@ body::before {
   text-transform: uppercase; letter-spacing: 0.07em;
   margin-bottom: 10px;
 }
-
+.sec-label-lg {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700; color: #fff;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-label-lg::before {
+  content: '';
+  width: 4px; height: 16px; border-radius: 2px;
+  background: var(--blue); flex-shrink: 0;
+}
 /* languages */
 .lang-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
 
