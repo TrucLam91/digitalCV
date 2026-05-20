@@ -981,6 +981,8 @@ body::before {
 
   /* bottom split: stack on mobile */
   .proj-split { grid-template-columns: 1fr; }
+   .about-wrap { display: flex; flex-direction: column; }
+.about-right { order: -1; }
 
   /* icons */
   .icons-grid { grid-template-columns: repeat(4, 1fr); }
