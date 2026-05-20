@@ -673,6 +673,7 @@ body::before {
   margin-bottom: 18px; line-height: 1.6;
 }
 
+/* icons-grid standalone (outside proj-split) */
 .icons-grid {
   display: grid;
   grid-template-columns: repeat(5, 76px);
@@ -709,6 +710,184 @@ body::before {
 .app-ico img {
   width: 100%; height: 100%;
   object-fit: cover; border-radius: 16px;
+}
+
+
+/* ═══════════════════════════════
+   PORTFOLIO — BOTTOM SPLIT
+═══════════════════════════════ */
+
+.proj-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+  width: 100%;
+}
+
+/* CRITICAL: prevent grid children from overflowing */
+.proj-split > * {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.proj-split-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-sizing: border-box;
+}
+
+.proj-split-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700; color: #fff;
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.proj-split-title::before {
+  content: '';
+  width: 4px; height: 16px; border-radius: 2px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+/* Icons grid INSIDE the split — must be fluid, not fixed-width */
+.proj-split-box .icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+  gap: 10px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.proj-split-box .app-ico {
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* ── Achievement grid ── */
+.achieve-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+  width: 100%;
+}
+
+.achieve-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  min-width: 0;
+}
+
+.achieve-card::after {
+  content: '↗';
+  position: absolute; top: 7px; right: 8px;
+  font-size: 10px;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0);
+  background: rgba(0,0,0,0.5);
+  transition: color 0.2s, background 0.2s;
+  z-index: 2;
+}
+
+.achieve-card:hover::after {
+  color: #fff;
+  background: rgba(245,158,11,0.75);
+}
+
+.achieve-card:hover {
+  border-color: rgba(245,158,11,0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+}
+
+/* thumbnail */
+.achieve-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #0a0c18;
+  display: block;
+}
+
+.achieve-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.achieve-card:hover .achieve-thumb img {
+  transform: scale(1.06);
+}
+
+/* placeholder */
+.achieve-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.achieve-ph::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.achieve-ph-1 { background: linear-gradient(135deg, #0f1e40 0%, #1e3268 100%); }
+.achieve-ph-2 { background: linear-gradient(135deg, #1a0f2e 0%, #351a52 100%); }
+.achieve-ph-3 { background: linear-gradient(135deg, #061a14 0%, #0a3328 100%); }
+.achieve-ph-4 { background: linear-gradient(135deg, #1f1200 0%, #3d2600 100%); }
+
+.achieve-ph-ico {
+  font-size: 28px;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 0 14px rgba(255,255,255,0.22));
+  transition: transform 0.3s ease;
+}
+
+.achieve-card:hover .achieve-ph-ico { transform: scale(1.15); }
+
+/* card text */
+.achieve-info {
+  padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+  flex: 1;
+}
+
+.achieve-title {
+  font-size: 11px; font-weight: 600;
+  color: var(--text);
+  line-height: 1.45;
+  transition: color 0.2s;
+}
+
+.achieve-card:hover .achieve-title { color: #fff; }
+
+.achieve-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 8.5px; color: var(--amber);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  opacity: 0.85;
+  text-shadow: var(--white-glow);
 }
 
 
@@ -786,6 +965,9 @@ body::before {
 
   /* pbi: single column */
   .pbi-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* bottom split: stack on mobile */
+  .proj-split { grid-template-columns: 1fr; }
 
   /* icons */
   .icons-grid { grid-template-columns: repeat(4, 1fr); }
