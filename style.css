@@ -734,7 +734,7 @@ body::before {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 22px;
-  align-items: start;
+  align-items: stretch;
   width: 100%;
 }
 
