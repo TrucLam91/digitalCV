@@ -31,4 +31,8 @@ function go(id) {
 
   /* scroll content back to top on section switch */
   document.getElementById(id).scrollTop = 0;
+   window.location.hash = id;
+}
+if (window.location.hash) {
+  go(window.location.hash.replace('#',''));
 }
